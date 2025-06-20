@@ -1,0 +1,323 @@
+/* Add your CSS here */
+body {
+  font-family: 'Inter', 'Geist-Mono', sans-serif !important;
+}
+/* Timeline cards container styles */
+.timeline-cards {
+  display: flex; /* Use Flexbox to arrange cards */
+  flex-direction: row; /* Arrange cards in a row (horizontal) */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 16px; /* Space between cards */
+  padding: 16px 0;
+  width: 1200px;      /* Show only 4 cards at a time (4*250px + 3*16px gap) */
+  max-width: 2000px;  /* Prevent more than 4 cards from showing at once */
+  margin: 0 auto 24px auto; /* Center the container horizontally */
+  /* Smooth scrolling for a better experience */
+  scroll-behavior: smooth;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory; /* Enable horizontal scroll snap for smooth navigation */
+  /* Hide scrollbar for all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  /* The scrollbar will appear at the bottom if there are too many cards */
+}
+
+/* Each timeline card */
+.timeline-card {
+  flex: 0 0 250px; /* Fixed width for horizontal layout */
+  background: #f5faff; /* Light Intel blue background */
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(33,150,243,0.08); /* Subtle blue shadow */
+  padding: 20px 16px;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 340px; /* Increased height for bigger cards */
+  max-height: 380px; /* Optional: set a max height */
+  font-family: 'Inter', 'Geist-Mono', sans-serif; /* Intel-like font */
+  color: #1a237e; /* Deep blue text */
+  position: relative;
+  cursor: pointer;
+  scroll-snap-align: start; /* Each card will snap to the start when scrolling */
+}
+
+/* Card headings */
+.timeline-card h2 {
+  font-size: 1.3em;
+  color: #1565c0; /* Intel blue */
+  margin: 0 0 4px 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.timeline-card h3 {
+  font-size: 1.1em;
+  color: #1976d2;
+  margin: 0 0 8px 0;
+  font-weight: normal;
+}
+
+/* Make images fit the card and have the same width and a longer height */
+.timeline-card img {
+  width: 250px;    /* Set a fixed width for all images */
+  height: 200px;   /* Make the image height longer */
+  object-fit: cover; /* Crop the image to fill the box if needed */
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #e3f2fd;
+  display: block; /* Remove extra space below images */
+}
+
+/* Hide the description text by default */
+.timeline-card .card-overlay {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(126, 200, 230, 0.92); /* Intel blue with transparency */
+  color: #fff; /* White font for description */
+  border-radius: 12px;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1em;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Prevent interaction when hidden */
+  opacity: 0; /* Hide overlay by default */
+  transition: opacity 0.7s ease-in-out; /* Smooth transition for opacity */
+}
+
+/* Show the overlay and description on hover */
+.timeline-card:hover .card-overlay {
+  opacity: 1;           /* Show the overlay */
+  pointer-events: auto; /* Allow interaction with the overlay */
+}
+
+/* Hide the paragraph in normal flow (so it only shows in overlay) */
+.timeline-card p {
+  display: none; /* Hide the description in the card by default */
+}
+
+/* Show the paragraph only inside the overlay when hovering */
+.timeline-card:hover .card-overlay p {
+  display: block; /* Show the description text in the overlay */
+  color: #fff;    /* Make sure text is white */
+  margin: 0;
+  opacity: 1;
+}
+
+/* Hover effect for cards */
+.timeline-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(33,150,243,0.18);
+  background: #e3f2fd; /* Lighter blue on hover */
+}
+
+/* Responsive: On medium screens, show fewer cards */
+@media (max-width: 1100px) {
+  .timeline-cards {
+    max-width: 800px; /* About 3 cards */
+  }
+}
+@media (max-width: 850px) {
+  .timeline-cards {
+    max-width: 550px; /* About 2 cards */
+  }
+}
+
+/* Responsive: Stack cards vertically and adjust header/logo on small screens */
+@media (max-width: 700px) {
+  .timeline-cards {
+    flex-direction: column; /* Stack cards vertically */
+    max-width: 100%;
+    overflow-x: visible; /* No horizontal scroll needed */
+    gap: 20px;
+    align-items: center; /* Center cards vertically */
+  }
+  .timeline-card {
+    min-width: 90vw;
+    max-width: 95vw;
+  }
+  header img {
+    width: 80px;        /* Make logo smaller on small screens */
+    margin-bottom: 16px;
+  }
+  header {
+    padding: 10vh 0 24px 0; /* Less vertical space on small screens */
+  }
+}
+
+/*
+  Explanation for students:
+  - @media rules help your page look good on phones, tablets, and computers.
+  - The timeline cards stack vertically on small screens.
+  - The header and logo get smaller on small screens so everything fits.
+  - Use your browser's DevTools (press F12 or right-click and choose "Inspect") and try resizing the window to see these changes in action!
+*/
+
+/* Style the Hero Section (header) for Intel branding */
+header {
+  background: linear-gradient(135deg, #2196f3 0%, #21cbf3 100%); /* Blue gradient background for hero section */
+  /*background: #2196f3; /* Solid Intel blue background */
+  padding: 25vh 0 32px 0; /* Add more vertical space so the logo and text are visible */
+  text-align: center;   /* Center all text and inline elements */
+  height: auto;         /* Let the header grow with content */
+  position: relative;   /* For positioning child elements */
+  margin: 0 auto;
+  border-radius: 0 0 16px 16px;
+  display: flex;              /* Use Flexbox for layout */
+  flex-direction: column;     /* Stack items vertically */
+  align-items: center;        /* Center items horizontally */
+  justify-content: flex-start;/* Start items at the top */
+}
+
+/* Center the Intel logo image in the header using flexbox */
+header img {
+  display: block;             /* Make the image a block element */
+  margin: 0 auto 24px auto;   /* Center the image horizontally and add space below */
+  width: 120px;               /* Set a good size for the logo */
+  max-width: 90vw;            /* Make sure it fits on small screens */
+  height: auto;               /* Keep the aspect ratio */
+  background: transparent;    /* No background behind the image itself */
+  /* No absolute positioning, so it works with flexbox centering */
+}
+
+/*
+  Explanation for students:
+  - header uses Flexbox to center all content, including the Intel logo.
+  - header img uses margin: 0 auto to center the logo horizontally.
+  - width and max-width make sure the logo looks good on all screens.
+*/
+
+/* Main headline styling */
+header h1 {
+  font-size: 2.2em;       /* Large, bold headline */
+  font-weight: bold;
+  margin: 0 0 12px 0;     /* Space below headline */
+  letter-spacing: 1px;
+  color: #fff;            /* White for contrast */
+  text-shadow: 0 2px 8px rgba(33,150,243,0.18); /* Subtle blue shadow */
+}
+
+/* Subheading/description styling */
+header p {
+  font-size: 1.15em;      /* Slightly larger text */
+  max-width: 600px;       /* Limit width for readability */
+  margin: 0 auto;         /* Center the paragraph */
+  color: #e3f2fd;         /* Lighter blue for softer contrast */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Center all text and content in the footer and add spacing */
+footer {
+  text-align: center;      /* Center all text in the footer */
+  margin: 0 auto;          /* Center the footer block if width is set */
+  padding: 20px 0 10px 0;  /* Add more space above and below */
+  margin: 32px 0 0 0;      /* Add space above the footer */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #1976d2;          /* Intel blue */
+  background: none;        /* No background so it doesn't cover content */
+  display: flex;           /* Use Flexbox to center content */
+  flex-direction: column;  /* Stack items vertically */
+  align-items: center;     /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  width: 100%;             /* Make footer span the full width */
+  max-width: 100vw;        /* Prevent overflow */
+  box-sizing: border-box;  /* Include padding in width */
+}
+
+/* Hero logo styling for the header */
+.hero-logo {
+  display: block;           /* Make the image a block element */
+  margin: 0 auto 24px auto; /* Center the logo and add space below */
+  width: 120px;             /* Set a good size for the hero image */
+  max-width: 90vw;          /* Make sure it fits on small screens */
+  height: auto;             /* Keep the aspect ratio */
+}
+
+/*
+  Explanation for students:
+  - The .hero-logo class centers the Intel logo at the top of the page.
+  - margin: 0 auto centers the image horizontally.
+  - width sets the size of the logo.
+  - max-width: 90vw makes sure the logo doesn't overflow on small screens.
+*/
+/*
+  Explanation for students:
+  - width and max-width set to 1080px so only 4 cards are visible at a time.
+  - margin: 0 auto centers the timeline-cards container on the page.
+  - overflow-x: auto lets you scroll to see more cards.
+  - No cards are cut off; you can scroll to see the rest.
+  - On smaller screens, the layout changes to show fewer cards or stack them vertically.
+  - .timeline-cards uses flexbox to arrange cards in a row (horizontal) or column (vertical on small screens).
+  - overflow-x: auto lets you scroll left and right to see more cards on large screens.
+  - .timeline-card sets the size, font, and style for each card.
+  - :hover adds a simple effect and shows more details when you move your mouse over a card.
+  - Media queries (@media) help make the layout responsive for different screen sizes.
+  - The footer is centered and spaced away from the timeline.
+  - margin and padding make sure the footer does not cover any content.
+  - .card-overlay is a special box that covers the card and shows the details when you hover.
+  - It uses position: absolute to sit on top of the card.
+  - On hover, the overlay appears and shows the description text in the center.
+  - scroll-snap-type on .timeline-cards makes the timeline "snap" to each card as you scroll.
+  - scroll-snap-align on .timeline-card tells the browser where each card should snap (at the start).
+  - This makes scrolling smoother and easier to follow.
+  - The scrollbar is hidden, but you can still scroll left and right using your mouse, touchpad, or by swiping on touch screens.
+  - This makes the timeline look cleaner.
+  - The min-height and max-height make the card taller
+  - The description text (inside <p>) is hidden by default.
+  - When you hover over a timeline card, the description fades in and becomes visible.
+  - This makes the timeline interactive and easy to read.
+  - .card-overlay is hidden by default and appears when you hover over a card.
+  - The overlay uses a blue background and white text for the description.
+  - This makes the description easy to read and interactive.
+  - On large screens, .timeline-cards uses Flexbox to arrange cards in a row and lets you scroll left and right.
+  - On small screens (700px or less), .timeline-cards switches to a column layout so cards stack vertically.
+  - Flexbox makes it easy to change the direction of the cards for different screen sizes.
+  - overflow-x: auto adds a scrollbar at the bottom for horizontal scrolling on large screens.
+  - gap adds space between each card.
+  - align-items: center centers the cards when stacked vertically.
+  - scroll-snap-type: x mandatory on .timeline-cards makes the timeline "snap" to each card as you scroll horizontally.
+  - scroll-snap-align: start on .timeline-card tells the browser to align the start of each card with the start of the container.
+  - This makes scrolling smoother and helps you focus on one card at a time.
+  - This makes the timeline interactive and easy to read.
+  - .card-overlay is hidden by default and appears when you hover over a card.
+  - The overlay uses a blue background and white text for the description.
+  - This makes the description easy to read and interactive.
+  - On large screens, .timeline-cards uses Flexbox to arrange cards in a row and lets you scroll left and right.
+  - On small screens (700px or less), .timeline-cards switches to a column layout so cards stack vertically.
+  - Flexbox makes it easy to change the direction of the cards for different screen sizes.
+  - overflow-x: auto adds a scrollbar at the bottom for horizontal scrolling on large screens.
+  - gap adds space between each card.
+  - align-items: center centers the cards when stacked vertically.
+  - scroll-snap-type: x mandatory on .timeline-cards makes the timeline "snap" to each card as you scroll horizontally.
+  - scroll-snap-align: start on .timeline-card tells the browser to align the start of each card with the start of the container.
+  - This makes scrolling smoother and helps you focus on one card at a time.
+  - display: flex, align-items: center, and justify-content: center make sure the header and footer content are always centered.
+  - flex-direction: column stacks the content vertically.
+  - text-align: center makes sure all the writing in the header and footer is centered.
+  - background: linear-gradient gives the header a blue gradient background.
+  - position: relative and z-index: 1 make sure the header image appears above the background.
+  - Check that the image path (src="img/intel-header-logo.svg") is correct.
+  - z-index: 2 and position: relative make sure the logo is in front of the background.
+  - background: none removes any background-image that could hide the logo.
+  - display: block makes sure the image is shown as a block element.
+  - margin: 0 auto centers the image horizontally.
+  - width: 100px sets the size of the logo.
+  - max-width: 90vw makes sure the logo doesn't overflow on small screens.
+  - height: auto keeps the aspect ratio of the logo.
+  - background: transparent makes sure there is no background behind the image.
+  - display: flex makes the footer a flex container.
+  - flex-direction: column stacks the items vertically.
+  - align-items: center centers the items horizontally.
+  - justify-content: center centers the items vertically.
+  - width: 100% makes the footer span the full width of the page.
+  - max-width: 100vw prevents overflow on small screens.
+  - box-sizing: border-box makes sure padding is included in the width.
+  - padding: 20px 0 10px 0 adds space above and below the footer.
+  - margin: 32px 0 0 0 adds space above the footer. */
