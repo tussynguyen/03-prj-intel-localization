@@ -644,7 +644,7 @@ footer p:last-child {
   box-shadow: 0 4px 16px rgba(33,150,243,0.12); /* Add shadow */
 }
 
-/* Individual carousel card styling */
+/* Individual carousel card styling with hover overlay */
 .timeline-card-carousel {
   background: #f5faff; /* Light blue background */
   padding: 30px; /* Internal spacing */
@@ -653,6 +653,56 @@ footer p:last-child {
   display: flex; /* Flexbox layout */
   flex-direction: column; /* Stack content vertically */
   justify-content: flex-start; /* Align content to top */
+  position: relative; /* Allow overlay positioning */
+  cursor: pointer; /* Show it's interactive */
+  transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for entire card */
+.timeline-card-carousel:hover {
+  transform: translateY(-4px); /* Slight lift on hover */
+}
+
+/* Full card overlay that appears on hover */
+.timeline-card-carousel .carousel-card-overlay {
+  position: absolute; /* Position over entire card */
+  top: 0; /* Start from top */
+  left: 0; /* Start from left */
+  width: 100%; /* Full card width */
+  height: 100%; /* Full card height */
+  background: rgba(126, 200, 230, 0.92); /* Semi-transparent blue */
+  color: #fff; /* White text */
+  display: flex; /* Flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
+  padding: 20px; /* Internal spacing */
+  box-sizing: border-box; /* Include padding in size */
+  border-radius: 12px; /* Match card border radius */
+  overflow-y: auto; /* Allow scrolling if text is too long */
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+/* Show full card overlay on hover */
+.timeline-card-carousel:hover .carousel-card-overlay {
+  opacity: 1; /* Show overlay on hover */
+}
+
+/* Full card overlay text styling - perfectly centered */
+.carousel-card-overlay p {
+  color: #fff; /* White text */
+  font-size: 1.5em; /* Readable text size */
+  line-height: 1.4; /* Comfortable line spacing */
+  margin: 0; /* Remove default margin */
+  text-align: center; /* Center text horizontally */
+  width: 50%; /* Limit width for readability */
+  height: auto; /* Auto height - no restrictions */
+  overflow-wrap: break-word; /* Break long words if needed */
+  word-wrap: break-word; /* Ensure words wrap properly */
+  hyphens: auto; /* Allow automatic hyphenation */
+  white-space: normal; /* Allow normal text wrapping */
+  max-width: 85%; /* Margin from edges for better readability */
 }
 
 /* Carousel card headings */
@@ -671,15 +721,14 @@ footer p:last-child {
   font-weight: normal; /* Normal weight */
 }
 
-/* Carousel images with hover overlay container */
+/* Carousel images with simple styling */
 .carousel-image-container {
-  position: relative; /* Allows overlay positioning */
   width: 100%; /* Full width */
   max-width: 400px; /* Maximum width */
   margin: 0 auto 20px auto; /* Center with bottom margin */
   border-radius: 8px; /* Rounded corners */
   overflow: hidden; /* Hide overflow for clean edges */
-  min-height: 250px; /* Ensure consistent height for overlay */
+  min-height: 250px; /* Ensure consistent height */
 }
 
 /* Carousel images */
@@ -689,52 +738,6 @@ footer p:last-child {
   object-fit: cover; /* Cover the container */
   display: block; /* Block display */
   background: #e3f2fd; /* Light blue background */
-  transition: transform 0.3s ease; /* Smooth zoom effect */
-}
-
-/* Image hover effect - slight zoom */
-.carousel-image-container:hover img {
-  transform: scale(1.05); /* Slight zoom on hover */
-}
-
-/* Hidden overlay that appears on hover */
-.carousel-image-overlay {
-  position: absolute; /* Position over the image */
-  top: 0; /* Start from top */
-  left: 0; /* Start from left */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background: rgba(126, 200, 230, 0.92); /* Semi-transparent blue */
-  color: #fff; /* White text */
-  display: flex; /* Flexbox for centering */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
-  padding: 10px; /* Minimal padding for maximum text space */
-  box-sizing: border-box; /* Include padding in size */
-  overflow-y: auto; /* Allow scrolling if text is too long */
-  overflow-x: hidden; /* Hide horizontal overflow */
-}
-
-/* Show overlay on hover */
-.carousel-image-container:hover .carousel-image-overlay {
-  opacity: 1; /* Show overlay on hover */
-}
-
-/* Overlay text styling - ensure no text is cut off */
-.carousel-image-overlay p {
-  color: #fff; /* White text */
-  font-size: 0.9em; /* Readable text size */
-  line-height: 1.3; /* Comfortable line spacing */
-  margin: 0; /* Remove default margin */
-  text-align: center; /* Center text */
-  width: 100%; /* Full width available */
-  height: auto; /* Auto height - no restrictions */
-  overflow-wrap: break-word; /* Break long words if needed */
-  word-wrap: break-word; /* Ensure words wrap properly */
-  hyphens: auto; /* Allow automatic hyphenation */
-  white-space: normal; /* Allow normal text wrapping */
 }
 
 /* Carousel control buttons (arrows) - now circular */
